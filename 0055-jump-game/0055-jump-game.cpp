@@ -12,7 +12,7 @@ public:
 
         }
         
-        return reachable >= nums.size() - 1 ? true : false;
+        return  true;
         
     }
 };
