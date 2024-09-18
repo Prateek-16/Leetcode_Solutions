@@ -1,15 +1,14 @@
-
 class Solution {
 public:
-    int hIndex(std::vector<int>& citations) {
+    int hIndex(vector<int>& citations) {
         int n = citations.size();
-        sort(citations.begin(), citations.end());
-
+        sort(citations.begin(), citations.end(), greater<int>());  // Sort in descending order
         for (int i = 0; i < n; ++i) {
-            if (n - i <= citations[i]) {
-                return n - i;
+            if (citations[i] < i + 1) {
+                return i;
             }
         }
-        return 0;
+        return n;
     }
 };
+
