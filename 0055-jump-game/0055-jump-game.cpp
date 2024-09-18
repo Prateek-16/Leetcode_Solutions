@@ -9,10 +9,7 @@ public:
                 return false;
             }
             reachable = max(reachable , nums[i] + i);
-
         }
-        
         return  true;
-        
     }
 };
