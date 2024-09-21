@@ -6,7 +6,6 @@ public:
         for(int i = 0; i < n ;i++){
             int curr = nums[i];
             if(mp.count(curr) && abs(mp[curr] - i) <= k){
-                cout<<mp[curr]<<" "<<i<<endl;
                 return true;
             }
             mp[curr] = i;
