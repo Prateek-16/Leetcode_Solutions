@@ -1,51 +1,47 @@
 class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
-        vector<string> justifiedText;
-
-        for (size_t i = 0, n = words.size(); i < n;) {
-            vector<string> currentLine = {words[i]}; // Words in the current line
-            int currentLineWidth = words[i].length();
-            ++i;
-          
-            // Greedily add words to the current line if they fit
-            while (i < n && currentLineWidth + 1 + words[i].length() <= maxWidth) {
-                currentLineWidth += 1 + words[i].length();
-                currentLine.push_back(words[i++]);
+        vector<string>ans;
+        int n = words.size();
+        for(int i = 0; i < n ;){
+            vector<string>currRow = {words[i]};
+            int currRow_len = words[i].length();
+            i++;
+            
+            //Adding Possible words in currRow
+            while(i < n && currRow_len + 1 + words[i].length() <= maxWidth){
+                currRow.push_back(words[i]);
+                currRow_len += 1 + words[i].length();
+                i++;
             }
-          
-            // Handle the last line or a line with a single word
-            if (i == n || currentLine.size() == 1) {
-                string leftJustified = currentLine[0];
-              
-                // Append remaining words separated by a single space
-                for (size_t j = 1; j < currentLine.size(); ++j) {
-                    leftJustified += " " + currentLine[j];
+            
+            //Edge case of currRow with 1 word or lastRow
+            if(i == n || currRow.size() == 1){
+                string currRow_string = currRow[0];
+                
+                for(int j =1;j<currRow.size();j++){
+                    currRow_string += " " + currRow[j];
                 }
-              
-                // Add trailing spaces to make the line of maxWidth length
-                string trailingSpaces = string(maxWidth - leftJustified.size(), ' ');
-                justifiedText.push_back(leftJustified + trailingSpaces);
+                
+                string trailingSpaces = string(maxWidth - currRow_string.size(),' ');
+                currRow_string += trailingSpaces;
+                ans.push_back(currRow_string);
                 continue;
             }
-          
-            // Calculate the total amount of space width to distribute among words
-            int totalSpaceWidth = (maxWidth - currentLineWidth) + currentLine.size() - 1;
-            int spaceBetweenWords = totalSpaceWidth / (currentLine.size() - 1);
-            int additionalSpaces = totalSpaceWidth % (currentLine.size() - 1);
-          
-            string row; // The justified row as a string
-            for (size_t j = 0; j < currentLine.size() - 1; ++j) {
-                row += currentLine[j] + string(spaceBetweenWords + (j < additionalSpaces ? 1 : 0), ' ');
+            
+            //Normal Cases
+            int total_spaces = (maxWidth - currRow_len) + currRow.size() - 1;
+            int space_between = total_spaces / (currRow.size() - 1);
+            int extra_spaces = total_spaces % (currRow.size() - 1);
+            
+            string row;
+            for(int j = 0;j<currRow.size() - 1;j++){
+                row += currRow[j] + string(space_between + (j < extra_spaces ? 1 : 0),' ');
             }
-          
-            // Append the last word
-            row += currentLine.back();
-          
-            // Add the fully justified line to the result
-            justifiedText.push_back(row);
+            row += currRow.back();
+            ans.push_back(row);
         }
-      
-        return justifiedText;
+        return ans;
+        
     }
 };
