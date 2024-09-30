@@ -29,8 +29,7 @@ public:
                 if(temp->right)
                     q.push(temp->right);
             }
-            double currLvl = (double)sum / size;
-            ans.push_back(currLvl);
+            ans.push_back((double)sum / size);
         }
         return ans;
     }
