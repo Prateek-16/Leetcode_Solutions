@@ -17,7 +17,7 @@ public:
         
         solve(root->left,k,ans);
         k--;
-        if(!k)
+        if(k == 0)
             ans = root->val;
         
         solve(root->right,k,ans);
