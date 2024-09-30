@@ -10,33 +10,31 @@
  * };
  */
 class BSTIterator {
+    //T.C - O(1)    S.C - O(h)
 private:
-    vector<int>inorder;
-    int itrator = 0;
-public:
-    void getInorder(TreeNode* root,vector<int>& inorder){
-        if(root == NULL){
-            return;
+    stack<TreeNode*>st;
+    void partialInorder(TreeNode* root){
+        while(root){
+            st.push(root);
+            root = root->left;
         }
-        getInorder(root->left,inorder);
-        inorder.push_back(root->val);
-        getInorder(root->right,inorder);
-        return;
     }
-    
+public:
     BSTIterator(TreeNode* root) {
-        getInorder(root,inorder);    
+        partialInorder(root);
     }
     
     int next() {
-        return inorder[itrator++];
-        
+        TreeNode* temp = st.top();
+        st.pop();
+        int ans = temp->val;
+        partialInorder(temp ->right);
+        return ans;
     }
     
     bool hasNext() {
-        if(itrator < inorder.size())
-            return true;
-        return false;
+        return !st.empty();
+        
     }
 };
 
