@@ -17,7 +17,7 @@ public:
         q.push(root);
         while(!q.empty()){
             int size = q.size();
-            long long int sum = 0;
+            long sum = 0;
             for(int i = 0;i<size;i++){
                 TreeNode* temp = q.front();
                 q.pop();
