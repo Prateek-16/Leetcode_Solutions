@@ -17,9 +17,6 @@ public:
         while(root->right){
             root = root->right;
         }
-        while(root->left){
-            root = root->left;
-        }
         return root;
     }
     
