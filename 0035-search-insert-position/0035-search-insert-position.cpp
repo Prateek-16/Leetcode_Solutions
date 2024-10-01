@@ -13,6 +13,6 @@ public:
                 high = mid; // Move to the left half or stay at mid
             }
         }
-        return low;
+        return high;
     }
 };
