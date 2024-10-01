@@ -14,6 +14,7 @@ public:
             if(j >= 0){
                 sum += b[j--] - '0';
             }
+            //Divide and mod by 2 because of base 2 (binary)
             carry = sum / 2;
             ans += to_string(sum % 2);
         }
