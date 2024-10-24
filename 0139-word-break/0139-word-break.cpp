@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool check(string word , vector<string>&wordDict){
+    bool check(string& word , vector<string>&wordDict){
         for(string it : wordDict){
             if(word == it){
                 return true;
@@ -8,7 +8,7 @@ public:
         }
         return false;
     }
-    bool solve(string s, vector<string>&wordDict, vector<int>&dp,int index){
+    bool solve(string& s, vector<string>&wordDict, vector<int>&dp,int index){
         if(index >= s.size()){
             return true;
         }
