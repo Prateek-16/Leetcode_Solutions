@@ -30,9 +30,9 @@ public:
                 mp[slope]++;
             }
             for(auto it : mp){
-                maxi = max(maxi , it.second);
+                maxi = max(maxi , it.second + 1);   //including current point
             }
         }
-        return maxi + 1;
+        return maxi;
     }
 };
