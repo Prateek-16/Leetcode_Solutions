@@ -12,32 +12,27 @@
 class Solution {
 public:
     TreeNode* getEnd(TreeNode* root){
-        if(!root)   return root;
-        
+        if(!root) return root;
         while(root->right){
             root = root->right;
         }
         while(root->left){
-            root = root->left;
-        }
+            root =  root->left;
+            }
         return root;
     }
     
-    void solve(TreeNode* root){
+    void flatten(TreeNode* root) {
         if(!root) return;
         
         TreeNode* rootRight = root->right;
-        if(root->left){
-            solve(root->left);
+        if(root -> left){
+            flatten(root->left);
             TreeNode* rightEnd = getEnd(root->left);
             root->right = root->left;
             root->left = NULL;
             rightEnd->right = rootRight;
         }
-        solve(rootRight);
-    }
-    
-    void flatten(TreeNode* root) {
-        solve(root);
+        flatten(rootRight);  
     }
 };
